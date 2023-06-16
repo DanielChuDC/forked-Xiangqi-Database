@@ -1,0 +1,7 @@
+for (let i = 0; i <= 31; i++) {
+    const cssRule = `#z${i} {
+      background-image: url('./car.jpg');
+    }`;
+  
+    console.log(cssRule);
+  }
