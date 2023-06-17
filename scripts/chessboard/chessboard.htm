@@ -1,21 +1,1205 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="content-language" content="zh-cn">
 
-<meta name="generator" content="notepad">
-<meta name="author" content="Monarch">
-<meta name="Copyright" content="Monarch">
-<meta name="description" content="DHTML">
-<title></title>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-language" content="zh-cn">
+
+    <meta name="generator" content="notepad">
+    <meta name="author" content="Monarch">
+    <meta name="Copyright" content="Monarch">
+    <meta name="description" content="DHTML">
+    <title></title>
+
+    <script type="text/javascript" src="./chessboard_files/hqct.js"></script>
+
+    <style type="text/css">
+        * {
+            font-size: 12px;
+            line-height: 16px;
+            margin: 0;
+            padding: 0;
+            font-family: Roboto;
+        }
+
+        a:link,
+        a:active,
+        a:visited {
+            text-decoration: none;
+            color: #000;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        body {
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        textarea {
+            word-wrap: break-word;
+            resize: none;
+            padding-left: 1px;
+        }
+
+        textarea:focus,
+        input:focus,
+        select:focus {
+            outline: none;
+        }
+
+        #divs,
+        #divsave {
+            position: absolute;
+            left: 0;
+            top: 0;
+            text-align: left;
+            width: 100%;
+            height: 100%;
+            background-color: #0B9CF5;
+        }
+
+        #m_text div,
+        #v_text div {
+            white-space: nowrap;
+            overflow: hidden;
+            line-height: 15px !important;
+            line-height: 14px;
+            padding-top: 1px !important;
+            padding-top: 2px;
+            cursor: default;
+        }
+
+        #div19 div {
+            position: absolute;
+            overflow: hidden;
+            background-color: #666;
+            font-size: 1px;
+            line-height: 1px;
+        }
+
+        #treetxt input {
+            height: 16px;
+            width: 17px;
+        }
+
+        #addred a {
+            color: #f00;
+        }
+    </style>
+
+    <div id="message"
+        style="position:absolute;left:50px;top:116px;width:400px;border:2px solid #0f0;background-color:#f4fcf3;">
+
+        <div style="margin:2px;color:#00f;text-align:center;height:84px;width:396px;overflow:hidden;" id="messdiv">
+            DongPing DhtmlXQ ChessBoard Loading ......</div>
+
+        <div style="margin-bottom:6px;text-align:center;width:100%;">
+
+            <button style="width:60px;padding-top:2px;margin-right:20%;" onclick="clickYES()">Yes</button><button
+                style="width:60px;padding-top:2px;" onclick="clickNO()">No</button>
+        </div>
+    </div>
+    <div id="divs" style="overflow: hidden; width: 500px; height: 350px;">
+        <div style="position: absolute; left: 4px; top: 0px; width: 550px; overflow: hidden; text-align: center; white-space: nowrap; padding-top: 2px; line-height: 26px; font-size: 16px;"
+            id="div1"></div>
+        <div style="position:absolute;top:28px;left:4px;width:232px;height:293px;">
+            <div style="position:absolute;left:0px;top:0px;width:232px;height:293px;background-color:#666;"></div>
+            <div style="position:absolute;left:1px;top:1px;width:230px;height:291px;background-color:#F5D2B4;"></div>
+            <div style="position:absolute;left:10px;top:27.5px;width:213px;height:238px;background-color:#666;"></div>
+            <div style="position:absolute;left:13px;top:30.5px;width:207px;height:232px;background-color:#F5D2B4;">
+            </div>
+            <div style="position:absolute;left:13px;top:30.5px;width:207px;height:232px;background-color:#F5D2B4;">
+            </div>
+            <div style="position:absolute;left:16px;top:33.5px;width:202px;height:227px;background-color:#FFF;"></div>
+            <div style="position:absolute;left:16px;top:33.5px;width:201px;height:226px;background-color:#666;">
+                <div style="position:absolute;left:1px;top:1px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:26px;top:1px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:51px;top:1px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:76px;top:1px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:101px;top:1px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:126px;top:1px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:151px;top:1px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:176px;top:1px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:1px;top:26px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:26px;top:26px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:51px;top:26px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:76px;top:26px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:101px;top:26px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:126px;top:26px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:151px;top:26px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:176px;top:26px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:1px;top:51px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:26px;top:51px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:51px;top:51px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:76px;top:51px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:101px;top:51px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:126px;top:51px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:151px;top:51px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:176px;top:51px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:1px;top:76px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:26px;top:76px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:51px;top:76px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:76px;top:76px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:101px;top:76px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:126px;top:76px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:151px;top:76px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:176px;top:76px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:1px;top:101px;width:199px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:198px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:1px;top:126px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:26px;top:126px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:51px;top:126px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:76px;top:126px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:101px;top:126px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:126px;top:126px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:151px;top:126px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:176px;top:126px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:1px;top:151px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:26px;top:151px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:51px;top:151px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:76px;top:151px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:101px;top:151px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:126px;top:151px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:151px;top:151px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:176px;top:151px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:1px;top:176px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:26px;top:176px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:51px;top:176px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:76px;top:176px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:101px;top:176px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:126px;top:176px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:151px;top:176px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:176px;top:176px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:1px;top:201px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:26px;top:201px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:51px;top:201px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:76px;top:201px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:101px;top:201px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:126px;top:201px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:151px;top:201px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+                <div style="position:absolute;left:176px;top:201px;width:24px;height:24px;background-color:#FFF;">
+                    <div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;">
+                    </div>
+                </div>
+            </div>
+            <div id="div19" style="position:absolute;top:33.5px;left:16px;">
+                <div style="width:1px;height:1px;left:75px;top:0px;"></div>
+                <div style="width:1px;height:1px;left:75px;top:50px;"></div>
+                <div style="width:1px;height:1px;left:76px;top:1px;"></div>
+                <div style="width:1px;height:1px;left:76px;top:49px;"></div>
+                <div style="width:1px;height:1px;left:77px;top:2px;"></div>
+                <div style="width:1px;height:1px;left:77px;top:48px;"></div>
+                <div style="width:1px;height:1px;left:78px;top:3px;"></div>
+                <div style="width:1px;height:1px;left:78px;top:47px;"></div>
+                <div style="width:1px;height:1px;left:79px;top:4px;"></div>
+                <div style="width:1px;height:1px;left:79px;top:46px;"></div>
+                <div style="width:1px;height:1px;left:80px;top:5px;"></div>
+                <div style="width:1px;height:1px;left:80px;top:45px;"></div>
+                <div style="width:1px;height:1px;left:81px;top:6px;"></div>
+                <div style="width:1px;height:1px;left:81px;top:44px;"></div>
+                <div style="width:1px;height:1px;left:82px;top:7px;"></div>
+                <div style="width:1px;height:1px;left:82px;top:43px;"></div>
+                <div style="width:1px;height:1px;left:83px;top:8px;"></div>
+                <div style="width:1px;height:1px;left:83px;top:42px;"></div>
+                <div style="width:1px;height:1px;left:84px;top:9px;"></div>
+                <div style="width:1px;height:1px;left:84px;top:41px;"></div>
+                <div style="width:1px;height:1px;left:85px;top:10px;"></div>
+                <div style="width:1px;height:1px;left:85px;top:40px;"></div>
+                <div style="width:1px;height:1px;left:86px;top:11px;"></div>
+                <div style="width:1px;height:1px;left:86px;top:39px;"></div>
+                <div style="width:1px;height:1px;left:87px;top:12px;"></div>
+                <div style="width:1px;height:1px;left:87px;top:38px;"></div>
+                <div style="width:1px;height:1px;left:88px;top:13px;"></div>
+                <div style="width:1px;height:1px;left:88px;top:37px;"></div>
+                <div style="width:1px;height:1px;left:89px;top:14px;"></div>
+                <div style="width:1px;height:1px;left:89px;top:36px;"></div>
+                <div style="width:1px;height:1px;left:90px;top:15px;"></div>
+                <div style="width:1px;height:1px;left:90px;top:35px;"></div>
+                <div style="width:1px;height:1px;left:91px;top:16px;"></div>
+                <div style="width:1px;height:1px;left:91px;top:34px;"></div>
+                <div style="width:1px;height:1px;left:92px;top:17px;"></div>
+                <div style="width:1px;height:1px;left:92px;top:33px;"></div>
+                <div style="width:1px;height:1px;left:93px;top:18px;"></div>
+                <div style="width:1px;height:1px;left:93px;top:32px;"></div>
+                <div style="width:1px;height:1px;left:94px;top:19px;"></div>
+                <div style="width:1px;height:1px;left:94px;top:31px;"></div>
+                <div style="width:1px;height:1px;left:95px;top:20px;"></div>
+                <div style="width:1px;height:1px;left:95px;top:30px;"></div>
+                <div style="width:1px;height:1px;left:96px;top:21px;"></div>
+                <div style="width:1px;height:1px;left:96px;top:29px;"></div>
+                <div style="width:1px;height:1px;left:97px;top:22px;"></div>
+                <div style="width:1px;height:1px;left:97px;top:28px;"></div>
+                <div style="width:1px;height:1px;left:98px;top:23px;"></div>
+                <div style="width:1px;height:1px;left:98px;top:27px;"></div>
+                <div style="width:1px;height:1px;left:99px;top:24px;"></div>
+                <div style="width:1px;height:1px;left:99px;top:26px;"></div>
+                <div style="width:1px;height:1px;left:100px;top:25px;"></div>
+                <div style="width:1px;height:1px;left:100px;top:25px;"></div>
+                <div style="width:1px;height:1px;left:101px;top:26px;"></div>
+                <div style="width:1px;height:1px;left:101px;top:24px;"></div>
+                <div style="width:1px;height:1px;left:102px;top:27px;"></div>
+                <div style="width:1px;height:1px;left:102px;top:23px;"></div>
+                <div style="width:1px;height:1px;left:103px;top:28px;"></div>
+                <div style="width:1px;height:1px;left:103px;top:22px;"></div>
+                <div style="width:1px;height:1px;left:104px;top:29px;"></div>
+                <div style="width:1px;height:1px;left:104px;top:21px;"></div>
+                <div style="width:1px;height:1px;left:105px;top:30px;"></div>
+                <div style="width:1px;height:1px;left:105px;top:20px;"></div>
+                <div style="width:1px;height:1px;left:106px;top:31px;"></div>
+                <div style="width:1px;height:1px;left:106px;top:19px;"></div>
+                <div style="width:1px;height:1px;left:107px;top:32px;"></div>
+                <div style="width:1px;height:1px;left:107px;top:18px;"></div>
+                <div style="width:1px;height:1px;left:108px;top:33px;"></div>
+                <div style="width:1px;height:1px;left:108px;top:17px;"></div>
+                <div style="width:1px;height:1px;left:109px;top:34px;"></div>
+                <div style="width:1px;height:1px;left:109px;top:16px;"></div>
+                <div style="width:1px;height:1px;left:110px;top:35px;"></div>
+                <div style="width:1px;height:1px;left:110px;top:15px;"></div>
+                <div style="width:1px;height:1px;left:111px;top:36px;"></div>
+                <div style="width:1px;height:1px;left:111px;top:14px;"></div>
+                <div style="width:1px;height:1px;left:112px;top:37px;"></div>
+                <div style="width:1px;height:1px;left:112px;top:13px;"></div>
+                <div style="width:1px;height:1px;left:113px;top:38px;"></div>
+                <div style="width:1px;height:1px;left:113px;top:12px;"></div>
+                <div style="width:1px;height:1px;left:114px;top:39px;"></div>
+                <div style="width:1px;height:1px;left:114px;top:11px;"></div>
+                <div style="width:1px;height:1px;left:115px;top:40px;"></div>
+                <div style="width:1px;height:1px;left:115px;top:10px;"></div>
+                <div style="width:1px;height:1px;left:116px;top:41px;"></div>
+                <div style="width:1px;height:1px;left:116px;top:9px;"></div>
+                <div style="width:1px;height:1px;left:117px;top:42px;"></div>
+                <div style="width:1px;height:1px;left:117px;top:8px;"></div>
+                <div style="width:1px;height:1px;left:118px;top:43px;"></div>
+                <div style="width:1px;height:1px;left:118px;top:7px;"></div>
+                <div style="width:1px;height:1px;left:119px;top:44px;"></div>
+                <div style="width:1px;height:1px;left:119px;top:6px;"></div>
+                <div style="width:1px;height:1px;left:120px;top:45px;"></div>
+                <div style="width:1px;height:1px;left:120px;top:5px;"></div>
+                <div style="width:1px;height:1px;left:121px;top:46px;"></div>
+                <div style="width:1px;height:1px;left:121px;top:4px;"></div>
+                <div style="width:1px;height:1px;left:122px;top:47px;"></div>
+                <div style="width:1px;height:1px;left:122px;top:3px;"></div>
+                <div style="width:1px;height:1px;left:123px;top:48px;"></div>
+                <div style="width:1px;height:1px;left:123px;top:2px;"></div>
+                <div style="width:1px;height:1px;left:124px;top:49px;"></div>
+                <div style="width:1px;height:1px;left:124px;top:1px;"></div>
+                <div style="width:1px;height:1px;left:75px;top:175px;"></div>
+                <div style="width:1px;height:1px;left:75px;top:225px;"></div>
+                <div style="width:1px;height:1px;left:76px;top:176px;"></div>
+                <div style="width:1px;height:1px;left:76px;top:224px;"></div>
+                <div style="width:1px;height:1px;left:77px;top:177px;"></div>
+                <div style="width:1px;height:1px;left:77px;top:223px;"></div>
+                <div style="width:1px;height:1px;left:78px;top:178px;"></div>
+                <div style="width:1px;height:1px;left:78px;top:222px;"></div>
+                <div style="width:1px;height:1px;left:79px;top:179px;"></div>
+                <div style="width:1px;height:1px;left:79px;top:221px;"></div>
+                <div style="width:1px;height:1px;left:80px;top:180px;"></div>
+                <div style="width:1px;height:1px;left:80px;top:220px;"></div>
+                <div style="width:1px;height:1px;left:81px;top:181px;"></div>
+                <div style="width:1px;height:1px;left:81px;top:219px;"></div>
+                <div style="width:1px;height:1px;left:82px;top:182px;"></div>
+                <div style="width:1px;height:1px;left:82px;top:218px;"></div>
+                <div style="width:1px;height:1px;left:83px;top:183px;"></div>
+                <div style="width:1px;height:1px;left:83px;top:217px;"></div>
+                <div style="width:1px;height:1px;left:84px;top:184px;"></div>
+                <div style="width:1px;height:1px;left:84px;top:216px;"></div>
+                <div style="width:1px;height:1px;left:85px;top:185px;"></div>
+                <div style="width:1px;height:1px;left:85px;top:215px;"></div>
+                <div style="width:1px;height:1px;left:86px;top:186px;"></div>
+                <div style="width:1px;height:1px;left:86px;top:214px;"></div>
+                <div style="width:1px;height:1px;left:87px;top:187px;"></div>
+                <div style="width:1px;height:1px;left:87px;top:213px;"></div>
+                <div style="width:1px;height:1px;left:88px;top:188px;"></div>
+                <div style="width:1px;height:1px;left:88px;top:212px;"></div>
+                <div style="width:1px;height:1px;left:89px;top:189px;"></div>
+                <div style="width:1px;height:1px;left:89px;top:211px;"></div>
+                <div style="width:1px;height:1px;left:90px;top:190px;"></div>
+                <div style="width:1px;height:1px;left:90px;top:210px;"></div>
+                <div style="width:1px;height:1px;left:91px;top:191px;"></div>
+                <div style="width:1px;height:1px;left:91px;top:209px;"></div>
+                <div style="width:1px;height:1px;left:92px;top:192px;"></div>
+                <div style="width:1px;height:1px;left:92px;top:208px;"></div>
+                <div style="width:1px;height:1px;left:93px;top:193px;"></div>
+                <div style="width:1px;height:1px;left:93px;top:207px;"></div>
+                <div style="width:1px;height:1px;left:94px;top:194px;"></div>
+                <div style="width:1px;height:1px;left:94px;top:206px;"></div>
+                <div style="width:1px;height:1px;left:95px;top:195px;"></div>
+                <div style="width:1px;height:1px;left:95px;top:205px;"></div>
+                <div style="width:1px;height:1px;left:96px;top:196px;"></div>
+                <div style="width:1px;height:1px;left:96px;top:204px;"></div>
+                <div style="width:1px;height:1px;left:97px;top:197px;"></div>
+                <div style="width:1px;height:1px;left:97px;top:203px;"></div>
+                <div style="width:1px;height:1px;left:98px;top:198px;"></div>
+                <div style="width:1px;height:1px;left:98px;top:202px;"></div>
+                <div style="width:1px;height:1px;left:99px;top:199px;"></div>
+                <div style="width:1px;height:1px;left:99px;top:201px;"></div>
+                <div style="width:1px;height:1px;left:100px;top:200px;"></div>
+                <div style="width:1px;height:1px;left:100px;top:200px;"></div>
+                <div style="width:1px;height:1px;left:101px;top:201px;"></div>
+                <div style="width:1px;height:1px;left:101px;top:199px;"></div>
+                <div style="width:1px;height:1px;left:102px;top:202px;"></div>
+                <div style="width:1px;height:1px;left:102px;top:198px;"></div>
+                <div style="width:1px;height:1px;left:103px;top:203px;"></div>
+                <div style="width:1px;height:1px;left:103px;top:197px;"></div>
+                <div style="width:1px;height:1px;left:104px;top:204px;"></div>
+                <div style="width:1px;height:1px;left:104px;top:196px;"></div>
+                <div style="width:1px;height:1px;left:105px;top:205px;"></div>
+                <div style="width:1px;height:1px;left:105px;top:195px;"></div>
+                <div style="width:1px;height:1px;left:106px;top:206px;"></div>
+                <div style="width:1px;height:1px;left:106px;top:194px;"></div>
+                <div style="width:1px;height:1px;left:107px;top:207px;"></div>
+                <div style="width:1px;height:1px;left:107px;top:193px;"></div>
+                <div style="width:1px;height:1px;left:108px;top:208px;"></div>
+                <div style="width:1px;height:1px;left:108px;top:192px;"></div>
+                <div style="width:1px;height:1px;left:109px;top:209px;"></div>
+                <div style="width:1px;height:1px;left:109px;top:191px;"></div>
+                <div style="width:1px;height:1px;left:110px;top:210px;"></div>
+                <div style="width:1px;height:1px;left:110px;top:190px;"></div>
+                <div style="width:1px;height:1px;left:111px;top:211px;"></div>
+                <div style="width:1px;height:1px;left:111px;top:189px;"></div>
+                <div style="width:1px;height:1px;left:112px;top:212px;"></div>
+                <div style="width:1px;height:1px;left:112px;top:188px;"></div>
+                <div style="width:1px;height:1px;left:113px;top:213px;"></div>
+                <div style="width:1px;height:1px;left:113px;top:187px;"></div>
+                <div style="width:1px;height:1px;left:114px;top:214px;"></div>
+                <div style="width:1px;height:1px;left:114px;top:186px;"></div>
+                <div style="width:1px;height:1px;left:115px;top:215px;"></div>
+                <div style="width:1px;height:1px;left:115px;top:185px;"></div>
+                <div style="width:1px;height:1px;left:116px;top:216px;"></div>
+                <div style="width:1px;height:1px;left:116px;top:184px;"></div>
+                <div style="width:1px;height:1px;left:117px;top:217px;"></div>
+                <div style="width:1px;height:1px;left:117px;top:183px;"></div>
+                <div style="width:1px;height:1px;left:118px;top:218px;"></div>
+                <div style="width:1px;height:1px;left:118px;top:182px;"></div>
+                <div style="width:1px;height:1px;left:119px;top:219px;"></div>
+                <div style="width:1px;height:1px;left:119px;top:181px;"></div>
+                <div style="width:1px;height:1px;left:120px;top:220px;"></div>
+                <div style="width:1px;height:1px;left:120px;top:180px;"></div>
+                <div style="width:1px;height:1px;left:121px;top:221px;"></div>
+                <div style="width:1px;height:1px;left:121px;top:179px;"></div>
+                <div style="width:1px;height:1px;left:122px;top:222px;"></div>
+                <div style="width:1px;height:1px;left:122px;top:178px;"></div>
+                <div style="width:1px;height:1px;left:123px;top:223px;"></div>
+                <div style="width:1px;height:1px;left:123px;top:177px;"></div>
+                <div style="width:1px;height:1px;left:124px;top:224px;"></div>
+                <div style="width:1px;height:1px;left:124px;top:176px;"></div>
+                <div style="left:2px;top:68px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:2px;top:77px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:43px;top:68px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:43px;top:77px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:52px;top:68px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:52px;top:77px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:93px;top:68px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:93px;top:77px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:102px;top:68px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:102px;top:77px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:143px;top:68px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:143px;top:77px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:152px;top:68px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:152px;top:77px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:193px;top:68px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:193px;top:77px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:18px;top:43px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:18px;top:52px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:27px;top:43px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:27px;top:52px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:168px;top:43px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:168px;top:52px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:177px;top:43px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:177px;top:52px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:2px;top:143px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:2px;top:152px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:43px;top:143px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:43px;top:152px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:52px;top:143px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:52px;top:152px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:93px;top:143px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:93px;top:152px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:102px;top:143px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:102px;top:152px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:143px;top:143px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:143px;top:152px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:152px;top:143px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:152px;top:152px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:193px;top:143px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:193px;top:152px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:18px;top:168px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:18px;top:177px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:27px;top:168px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:27px;top:177px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:168px;top:168px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:168px;top:177px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:177px;top:168px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+                <div style="left:177px;top:177px;width:6px;height:6px;">
+                    <div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div>
+                </div>
+            </div>
+            <div style="position:absolute;left:12px;top:4px;width:250px;font-size:12px;letter-spacing:13px;" id="bside">
+                １２３４５６７８９</div>
+            <div style="position:absolute;left:18px;top:135px;width:198px;height:22px;overflow:hidden;text-align:center;line-height:24px;"
+                id="mside"></div>
+            <div style="position:absolute;left:11px;top:275px;width:250px;font-size:12px;letter-spacing:13px;"
+                id="rside">９８７６５４３２１</div>
+            <div style="position:absolute;left:4px;top:21.5px;width:225px;height:252px;">
+                <div id="z32" style="left:250px;top:225px;position:absolute;width:25px;height:25px;">
+                    <div style="position:absolute;top:0;left:0;width:24px;height:24px;background-color:#0F0;"></div>
+                </div>
+                <div id="z31" style="left: 200px; top: 75px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z30" style="left: 150px; top: 75px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z29" style="left: 100px; top: 75px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z28" style="left: 50px; top: 75px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z27" style="left: 0px; top: 75px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z26" style="left: 175px; top: 50px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b6_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z25" style="left: 25px; top: 50px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b6_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z24" style="left: 200px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b1_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z23" style="left: 175px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b2_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z22" style="left: 150px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b3_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z21" style="left: 125px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b4_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z20" style="left: 100px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b5_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z19" style="left: 75px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b4_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z18" style="left: 50px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b3_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z17" style="left: 25px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b2_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z16" style="left: 0px; top: 0px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b1_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z15" style="left: 0px; top: 150px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z14" style="left: 50px; top: 150px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z13" style="left: 100px; top: 150px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z12" style="left: 150px; top: 150px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z11" style="left: 200px; top: 150px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z10" style="left: 25px; top: 175px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r6_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z9" style="left: 175px; top: 175px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r6_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z8" style="left: 0px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r1_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z7" style="left: 25px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r2_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z6" style="left: 50px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r3_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z5" style="left: 75px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r4_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z4" style="left: 100px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r5_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z3" style="left: 125px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r4_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z2" style="left: 150px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r3_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z1" style="left: 175px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r2_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <div id="z0" style="left: 200px; top: 225px; position: absolute; width: 25px; height: 25px;">
+                    <div
+                        style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r1_24.png);background-position:0px 0px;">
+                    </div>
+                </div>
+                <table style="position:absolute;top:0;left:0" cellspacing="0" cellpadding="0">
+                    <tbody>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;00&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;10&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;20&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;30&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;40&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;50&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;60&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;70&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;80&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;01&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;11&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;21&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;31&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;41&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;51&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;61&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;71&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;81&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;02&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;12&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;22&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;32&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;42&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;52&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;62&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;72&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;82&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;03&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;13&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;23&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;33&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;43&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;53&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;63&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;73&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;83&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;04&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;14&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;24&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;34&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;44&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;54&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;64&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;74&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;84&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;05&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;15&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;25&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;35&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;45&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;55&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;65&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;75&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;85&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;06&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;16&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;26&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;36&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;46&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;56&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;66&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;76&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;86&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;07&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;17&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;27&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;37&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;47&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;57&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;67&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;77&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;87&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;08&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;18&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;28&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;38&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;48&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;58&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;68&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;78&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;88&#39;)"></td>
+                        </tr>
+                        <tr>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;09&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;19&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;29&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;39&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;49&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;59&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;69&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;79&#39;)"></td>
+                            <td style="width:25px;height:25px;" onclick="getMove(&#39;89&#39;)"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:0;"
+                onclick="gotonum(&#39;First&#39;)" value="&lt;&lt;"><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:37px;"
+                onmouseup="gotonum(&#39;Prev&#39;)" value="&lt;"><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:74px;"
+                onmouseup="gotonum(&#39;Next&#39;)" value="&gt;"><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:111px;"
+                onclick="gotonum(&#39;Last&#39;)" value="&gt;&gt;"><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:148px;width:47px;border:0;background-color:transparent;color:#00f;"
+                id="shownow" value="0/0"><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:196px;" id="autoplay"
+                onclick="AutoPlay()" value="Auto">
+            <div style="position:absolute;left:196px;top:106px;width:36px;height:214px;display:none;overflow:hidden;background-color:#666;"
+                id="autotime">
+                <div
+                    style="position:absolute;left:1px;top:1px;width:34px;height:212px;line-height:16px;background-color:#fff;text-align:center;">
+                    <div style="height:3px;font-size:3px;line-height:3px;"></div><a
+                        href="javascript:turnBoard();">Turn</a><br><a href="javascript:mirrorBoard();">Mirro</a><br><a
+                        href="javascript:Autotimer(8000)">8s</a><br><a href="javascript:Autotimer(5000)">5s</a><br><a
+                        href="javascript:Autotimer(3000)">3s</a><br><a href="javascript:Autotimer(2000)">2s</a><br><a
+                        href="javascript:Autotimer(1000)">1s</a><br><a href="javascript:Autotimer(500)">0.5s</a><br><a
+                        href="javascript:Autotimer(200)">0.2s</a><br><a href="javascript:Autotimer(100)">0.1s</a>
+                </div>
+            </div>
+        </div>
+        <div style="position:absolute;top:28px;left:238px;">
+            <div style="position:absolute;left:0px;top:0px;width:108px;height:293px;background-color:#666;"></div>
+            <div style="position:absolute;left:1px;top:1px;width:106px;height:291px;background-color:#9DF;"></div>
+            <div style="position:absolute;left:1px;top:20px;width:106px;height:258px;background-color:#FFF;"></div>
+            <div
+                style="position:absolute;left:6px;top:1px;width:101px;padding-top:1px!important;padding-top:2px;line-height:18px;">
+                Move List[<a href="javascript:HideMove();" id="hidemove">Hide</a>]</div>
+            <div style="position:absolute;left:2px;top:21px;width:105px;height:256px;overflow:auto;" id="m_scroll">
+                <div id="m_text" style="height:257px;-moz-user-select:none;" onselectstart="return false;">
+                    <div id="move_0" onmouseup="gotonum(0)" style="background-color:#316ac5;color:#fff;">
+                        --&gt;Start&nbsp;</div>
+                </div>
+            </div><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:0;" value="Turn"
+                id="turn_Board" onclick="turnBoard()"><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:37px;" value="Mirro"
+                id="mirror_Board" onclick="mirrorBoard()"><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:74px;width:34px;"
+                value="Save" onclick="">
+        </div>
+        <div style="position:absolute;top:28px;left:348px;">
+            <div style="position:absolute;left:0px;top:0px;width:148px;height:293px;background-color:#666;"></div>
+            <div style="position:absolute;left:1px;top:1px;width:146px;height:291px;background-color:#9DF;"></div>
+            <div style="position:absolute;left:1px;top:20px;width:146px;height:172px;background-color:#FFF;"></div>
+            <div style="position:absolute;left:2px;top:21px;width:145px;height:170px;overflow:auto;" id="c_scroll">
+                <textarea id="c_text"
+                    style="height:170px;overflow-y:scroll!important;overflow-y:visible;border:0;width:100%;padding-left:2px;background-color:transparent;"
+                    onblur="allowLR=true;" onfocus="allowLR=false;" ondblclick="this.select();"></textarea></div>
+            <div
+                style="position:absolute;left:6px;top:193px;width:141px;padding-top:1px!important;padding-top:2px;line-height:18px;">
+                <a href="javascript:DelMove()" title="Delete variation">Delete Move</a></div>
+            <div style="position:absolute;left:1px;top:212px;width:146px;height:66px;background-color:#FFF;"></div>
+            <div style="position:absolute;left:2px;top:213px;width:145px;height:64px;overflow:auto;" id="v_scroll">
+                <div id="v_text" style="height:65px;-moz-user-select:none;" onselectstart="return false;"></div>
+            </div><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:0;" value="Mini"
+                onclick=""><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:37px;" value="Im/Ex"
+                id="showsource" onclick="ViewSource()"><input type="button"
+                style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:74px;width:74px;color:f00;"
+                value="Search" id="showsearch" onclick="">
+        </div>
+        <div id="sourceText" style="position:absolute;display:none;top:28px;left:238px;">
+            <div style="position:absolute;left:0px;top:0px;width:258px;height:293px;background-color:#666;"></div>
+            <div style="position:absolute;left:1px;top:1px;width:256px;height:291px;background-color:#9DF;"></div>
+            <div style="position:absolute;left:1px;top:20px;width:256px;height:156px;background-color:#FFF;"></div>
+            <div
+                style="position:absolute;left:6px;top:1px;width:251px;padding-top:1px!important;padding-top:2px;line-height:18px;">
+                Import Export</div><textarea id="source_Text"
+                style="position:absolute;left:2px;top:21px;width:255px;height:154px;overflow-y:scroll;border:0;background-color:transparent;"
+                onblur="allowLR=true;" onfocus="allowLR=false;" ondblclick="this.select();"></textarea>
+            <div
+                style="position:absolute;left:6px;top:177px;width:251px;padding-top:1px!important;padding-top:2px;line-height:18px;">
+                <a href="javascript:setBinit(1)">Accept pos</a> <a href="javascript:setBinit(2)"
+                    style="color:#f00">Clear board</a> <a href="javascript:setBinit(3)">Start pos</a></div>
+            <div style="position:absolute;left:1px;top:196px;width:256px;height:82px;background-color:#FFF;"></div>
+            <div style="position:absolute;left:2px;top:197px;width:255px;height:80px;overflow-y:scroll;">
+                <div style="position:absolute;left:4px;top:1px;"><br>ExportPOS:<a href="javascript:getFENTEXT()">Text
+                        FEN</a> <br>Add Pieces:<span id="addred"><a href="javascript:addQizi(&#39;0_8&#39;)"
+                            title="Select Red Rook">车</a><a href="javascript:addQizi(&#39;1_7&#39;)"
+                            title="Select Red Horse">马</a><a href="javascript:addQizi(&#39;9_10&#39;)"
+                            title="Select Red Cannon">炮</a><a href="javascript:addQizi(&#39;11_12_13_14_15&#39;)"
+                            title="Select Red Pawn">兵</a><a href="javascript:addQizi(&#39;2_6&#39;)"
+                            title="Select Red Elephant">相</a><a href="javascript:addQizi(&#39;3_5&#39;)"
+                            title="Select Red Advisor">仕</a><a href="javascript:addQizi(&#39;4&#39;)"
+                            title="Select Red King">帅</a></span> <a href="javascript:addQizi(&#39;16_24&#39;)"
+                        title="Select Black 车">车</a><a href="javascript:addQizi(&#39;17_23&#39;)"
+                        title="Select Black 马">马</a><a href="javascript:addQizi(&#39;25_26&#39;)"
+                        title="Select Black 炮">炮</a><a href="javascript:addQizi(&#39;27_28_29_30_31&#39;)"
+                        title="Select Black 卒">卒</a><a href="javascript:addQizi(&#39;18_22&#39;)"
+                        title="Select Black 象">象</a><a href="javascript:addQizi(&#39;19_21&#39;)"
+                        title="Select Black 士">士</a><a href="javascript:addQizi(&#39;20&#39;)"
+                        title="Select Black 将">将</a>
+                    <form id="treetxt" action="http://xqbasic.com/Scripts/chessboard/chessboard.htm" name="treetxt"
+                        style="display:none;background-color:#fff;position:absolute;top:0;left:0;">点链接设置变着文本参数--&gt;<a
+                            href="javascript:getTEXT(1)" style="color:#00f">确认导出</a> <a href="javascript:TreeSet(0)"
+                            style="color:#f00">返回</a><br>导出内容:<span id="nstart2"></span><a
+                            href="javascript:TreeSet(&#39;nstart&#39;,0);" id="nstart0" style="color:#00f">◎ 全部</a> <a
+                            href="javascript:TreeSet(&#39;nstart&#39;,1);" id="nstart1">◎当前局面</a> <a
+                            href="javascript:getTEXT(&#39;&#39;);" id="nstart3">◎简单文本</a><br>导出格式:<span
+                            id="stype3"></span><a href="javascript:TreeSet(&#39;stype&#39;,1);" id="stype1"
+                            style="color:#00f">◎ 标准</a> <a href="javascript:TreeSet(&#39;stype&#39;,0);"
+                            id="stype0">◎分离模式</a> <a href="javascript:TreeSet(&#39;stype&#39;,2);"
+                            id="stype2">◎紧凑模式</a><br>每行列数:<span id="col0"></span><a
+                            href="javascript:TreeSet(&#39;col&#39;,1);" id="col1" style="color:#00f">◎ 一列</a> <a
+                            href="javascript:TreeSet(&#39;col&#39;,2);" id="col2">◎每行二列</a> <a
+                            href="javascript:TreeSet(&#39;col&#39;,3);"
+                            id="col3">◎每行三列</a><br>点击相应导出格式链接然后点确认导出即可<br>注解行首 <input type="text" name="zhustr"
+                            value="0"> 着法行首 <input type="text" name="lspace" value="4"> 着法行尾 <input type="text"
+                            name="rspace" value="0"><br>回合内左 <input type="text" name="lpad" value="1"> 回合内右 <input
+                            type="text" name="rpad" value="1"> 回合之间 <input type="text" name="mspace" value="3"><br>注解标示
+                        <input type="text" name="zhujie" value="*"> 变着标示 <input type="text" name="bianzhao" value="B">
+                        变着层数 <input type="text" name="maxdepth" value="999"><br>清除空项 <input type="text" name="delempty"
+                            value="1"> 着数记数 <input type="text" name="istwo" value="0"> 按层编号 <input type="text"
+                            name="bianhao" value="1"><br><input type="hidden" name="nstart" value="0"><input
+                            type="hidden" name="stype" value="1"><input type="hidden" name="col" value="1"></form>
+                </div>
+            </div>
+        </div>
+        <div id="searchText" style="position:absolute;display:none;top:28px;left:238px;">
+            <div style="position:absolute;left:0px;top:0px;width:258px;height:293px;background-color:#666;"></div>
+            <div style="position:absolute;left:1px;top:1px;width:256px;height:291px;background-color:#9DF;"></div>
+            <div style="position:absolute;left:1px;top:20px;width:256px;height:258px;background-color:#FFF;"></div>
+            <div
+                style="position:absolute;left:6px;top:1px;width:251px;padding-top:1px!important;padding-top:2px;line-height:18px;">
+                棋谱搜索</div>
+            <div style="position:absolute;left:2px;top:21px;width:255px;height:256px;" id="search_Text">
+                <div style="margin:2px;"><a href="javascript:SearchE()">搜索与当前子力相同对局</a>　<a
+                        href="javascript:SearchE(2)">红胜</a>　<a href="javascript:SearchE(0)">黑胜</a>　<a
+                        href="javascript:SearchE(1)">和棋</a><br><a
+                        href="javascript:SearchP(&#39;next&#39;)">搜索与当前局面相同对局</a>　<a
+                        href="javascript:SearchP(&#39;next&#39;,2)">红胜</a>　<a
+                        href="javascript:SearchP(&#39;next&#39;,0)">黑胜</a>　<a
+                        href="javascript:SearchP(&#39;next&#39;,1)">和棋</a><br><a
+                        href="javascript:SearchP(&#39;tnew&#39;)">搜索当前局面的变着统计</a>　<a
+                        href="javascript:SearchP(&#39;tnew&#39;,2)">红胜</a>　<a
+                        href="javascript:SearchP(&#39;tnew&#39;,0)">黑胜</a>　<a
+                        href="javascript:SearchP(&#39;tnew&#39;,1)">和棋</a><br><a
+                        href="javascript:SearchRB(&#39;red&#39;)">搜索红方棋手的所有对局</a>　<a
+                        href="javascript:SearchRB(&#39;red&#39;,2)">胜局</a>　<a
+                        href="javascript:SearchRB(&#39;red&#39;,0)">负局</a>　<a
+                        href="javascript:SearchRB(&#39;red&#39;,1)">和局</a><br><a
+                        href="javascript:SearchRB(&#39;black&#39;)">搜索黑方棋手的所有对局</a>　<a
+                        href="javascript:SearchRB(&#39;black&#39;,2)">胜局</a>　<a
+                        href="javascript:SearchRB(&#39;black&#39;,0)">负局</a>　<a
+                        href="javascript:SearchRB(&#39;black&#39;,1)">和局</a><br><a
+                        href="javascript:getFENTEXT(&#39;coffeecc&#39;)">与软件对弈</a>　<a
+                        href="javascript:SearchEPOS(&#39;1009&#39;)">查找同型局</a>　<a
+                        href="javascript:getFENTEXT(&#39;Paiendgame&#39;)">搜索当前残局解法</a><br>
+                    <div style="color:#00f;margin-bottom:12px;">以上链接均可点击搜索，部分功能仅会员可用</div>　　棋谱仓库，百万棋谱，是<span
+                        style="color:#f00;">极强大的象棋开<br>局库</span>，可辅助慢棋开局，研究棋谱和对手资料<br>系<span
+                        style="color:#f00;">电话13898991761 QQ:88081492 旺旺:hldcg</span><br>动态棋盘生成页面 <a
+                        href="http://www.dpxq.com/hldcg/dhtmlxq/" target="_blank"
+                        style="color:#00f;">http://dhtmlxq.dpxq.com</a><br><a href="http://www.dpxq.com/"
+                        style="color:#00f;" target="_blank">中国象棋棋谱仓库 - 东萍象棋网</a> <a
+                        href="http://www.dpxq.com/hldcg/share/" style="color:#f00;" target="_blank">象棋谱大全</a>
+                </div>
+            </div>
+        </div>
+        <div style="position:absolute;top:353px;left:4px;">
+            <div id="div16" style="position:relative;text-align:left;height:35px;width:492px;overflow:hidden;">
+                <div style="position:absolute;right:0;top:0;text-align:right;width:234;"><a
+                        href="javascript:copysurl()">Copy</a></div>
+                <div style="position:absolute;left:0;top:0;overflow:hidden;text-align:left;width:252;">
+                    <nobr><a href="javascript:getInfo()">来源网站</a>：<a
+                            href="http://www.dpxq.com/hldcg/search/gourl.asp?site=http%3A//www.dpxq.com&amp;url=http%3A//www.dpxq.com"
+                            style="color:#000;" target="_blank">http://www.dpxq.com</a></nobr>
+                </div><br>
+                <nobr>参与讨论：<a
+                        href="http://www.dpxq.com/hldcg/search/gourl.asp?site=http%3A//www.dpxq.com&amp;url=http%3A//www.dpxq.com/hldcg/search"
+                        style="color:#000;" target="_blank">http://www.dpxq.com/hldcg/search</a></nobr>
+            </div> <textarea id="showText" onblur="allowLR=true;" onfocus="allowLR=false;" ondblclick="this.select();"
+                style="padding:1px;overflow-y:scroll;background-color:#fff;height:0px;width:492px;"></textarea>
+            <form target="DhtmlXQ_dpxq" style="display:none;" name="DhtmlXQ_search" id="DhtmlXQ_search" method="post"
+                action="http://www.dpxq.com/hldcg/search/index.asp"><textarea name="ubb"></textarea><input type="text"
+                    name="s"><input type="text" name="f"></form>
+        </div>
+    </div>
+    <div id="divsave" style="display:none;overflow:auto;"></div>
 </head>
+
 <body onkeydown="Xnc_KEvent(event.keyCode)" style="background-color:transparent">
 
-[DhtmlXQ_diyimg]mxq,1,0,1,1,0,38,40,-355,-26[/DhtmlXQ_diyimg]
-&lt;<script type="text/javascript">
-<!--
-    if (!DhtmlXQimgpath) var DhtmlXQimgpath = '';
-    document.write('<script type="text/javascript" src="hqct.js"></script>');
-//-->
-</script><script type="text/javascript" src="./chessboard_files/hqct.js"></script><style type="text/css">* {font-size:12px;line-height:16px;margin:0;padding:0;font-family:Roboto;}a:link,a:active,a:visited {text-decoration:none;color:#000;}a:hover {text-decoration:underline;}body {overflow:hidden;background-color:transparent;}textarea {word-wrap:break-word;resize:none;padding-left:1px;}textarea:focus,input:focus,select:focus {outline:none;}#divs,#divsave {position:absolute;left:0;top:0;text-align:left;width:100%;height:100%;background-color:#0B9CF5;}#m_text div,#v_text div {white-space:nowrap;overflow:hidden;line-height:15px!important;line-height:14px;padding-top:1px!important;padding-top:2px;cursor:default;}#div19 div {position:absolute;overflow:hidden;background-color:#666;font-size:1px;line-height:1px;}#treetxt input {height:16px;width:17px;}#addred a {color:#f00;}</style><div id="message" style="position:absolute;left:50px;top:116px;width:400px;border:2px solid #0f0;background-color:#f4fcf3;"><div style="margin:2px;color:#00f;text-align:center;height:84px;width:396px;overflow:hidden;" id="messdiv">DongPing DhtmlXQ ChessBoard Loading ......</div><div style="margin-bottom:6px;text-align:center;width:100%;"><button style="width:60px;padding-top:2px;margin-right:20%;" onclick="clickYES()">Yes</button><button style="width:60px;padding-top:2px;" onclick="clickNO()">No</button></div></div><div id="divs" style="overflow: hidden; width: 500px; height: 350px;"><div style="position: absolute; left: 4px; top: 0px; width: 550px; overflow: hidden; text-align: center; white-space: nowrap; padding-top: 2px; line-height: 26px; font-size: 16px;" id="div1"></div><div style="position:absolute;top:28px;left:4px;width:232px;height:293px;"><div style="position:absolute;left:0px;top:0px;width:232px;height:293px;background-color:#666;"></div><div style="position:absolute;left:1px;top:1px;width:230px;height:291px;background-color:#F5D2B4;"></div><div style="position:absolute;left:10px;top:27.5px;width:213px;height:238px;background-color:#666;"></div><div style="position:absolute;left:13px;top:30.5px;width:207px;height:232px;background-color:#F5D2B4;"></div><div style="position:absolute;left:13px;top:30.5px;width:207px;height:232px;background-color:#F5D2B4;"></div><div style="position:absolute;left:16px;top:33.5px;width:202px;height:227px;background-color:#FFF;"></div><div style="position:absolute;left:16px;top:33.5px;width:201px;height:226px;background-color:#666;"><div style="position:absolute;left:1px;top:1px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:26px;top:1px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:51px;top:1px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:76px;top:1px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:101px;top:1px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:126px;top:1px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:151px;top:1px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:176px;top:1px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:1px;top:26px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:26px;top:26px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:51px;top:26px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:76px;top:26px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:101px;top:26px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:126px;top:26px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:151px;top:26px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:176px;top:26px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:1px;top:51px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:26px;top:51px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:51px;top:51px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:76px;top:51px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:101px;top:51px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:126px;top:51px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:151px;top:51px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:176px;top:51px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:1px;top:76px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:26px;top:76px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:51px;top:76px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:76px;top:76px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:101px;top:76px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:126px;top:76px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:151px;top:76px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:176px;top:76px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:1px;top:101px;width:199px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:198px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:1px;top:126px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:26px;top:126px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:51px;top:126px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:76px;top:126px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:101px;top:126px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:126px;top:126px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:151px;top:126px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:176px;top:126px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:1px;top:151px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:26px;top:151px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:51px;top:151px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:76px;top:151px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:101px;top:151px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:126px;top:151px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:151px;top:151px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:176px;top:151px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:1px;top:176px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:26px;top:176px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:51px;top:176px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:76px;top:176px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:101px;top:176px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:126px;top:176px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:151px;top:176px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:176px;top:176px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:1px;top:201px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:26px;top:201px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:51px;top:201px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:76px;top:201px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:101px;top:201px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:126px;top:201px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:151px;top:201px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div><div style="position:absolute;left:176px;top:201px;width:24px;height:24px;background-color:#FFF;"><div style="position:absolute;left:1px;top:1px;width:23px;height:23px;background-color:#F5D2B4;"></div></div></div><div id="div19" style="position:absolute;top:33.5px;left:16px;"><div style="width:1px;height:1px;left:75px;top:0px;"></div><div style="width:1px;height:1px;left:75px;top:50px;"></div><div style="width:1px;height:1px;left:76px;top:1px;"></div><div style="width:1px;height:1px;left:76px;top:49px;"></div><div style="width:1px;height:1px;left:77px;top:2px;"></div><div style="width:1px;height:1px;left:77px;top:48px;"></div><div style="width:1px;height:1px;left:78px;top:3px;"></div><div style="width:1px;height:1px;left:78px;top:47px;"></div><div style="width:1px;height:1px;left:79px;top:4px;"></div><div style="width:1px;height:1px;left:79px;top:46px;"></div><div style="width:1px;height:1px;left:80px;top:5px;"></div><div style="width:1px;height:1px;left:80px;top:45px;"></div><div style="width:1px;height:1px;left:81px;top:6px;"></div><div style="width:1px;height:1px;left:81px;top:44px;"></div><div style="width:1px;height:1px;left:82px;top:7px;"></div><div style="width:1px;height:1px;left:82px;top:43px;"></div><div style="width:1px;height:1px;left:83px;top:8px;"></div><div style="width:1px;height:1px;left:83px;top:42px;"></div><div style="width:1px;height:1px;left:84px;top:9px;"></div><div style="width:1px;height:1px;left:84px;top:41px;"></div><div style="width:1px;height:1px;left:85px;top:10px;"></div><div style="width:1px;height:1px;left:85px;top:40px;"></div><div style="width:1px;height:1px;left:86px;top:11px;"></div><div style="width:1px;height:1px;left:86px;top:39px;"></div><div style="width:1px;height:1px;left:87px;top:12px;"></div><div style="width:1px;height:1px;left:87px;top:38px;"></div><div style="width:1px;height:1px;left:88px;top:13px;"></div><div style="width:1px;height:1px;left:88px;top:37px;"></div><div style="width:1px;height:1px;left:89px;top:14px;"></div><div style="width:1px;height:1px;left:89px;top:36px;"></div><div style="width:1px;height:1px;left:90px;top:15px;"></div><div style="width:1px;height:1px;left:90px;top:35px;"></div><div style="width:1px;height:1px;left:91px;top:16px;"></div><div style="width:1px;height:1px;left:91px;top:34px;"></div><div style="width:1px;height:1px;left:92px;top:17px;"></div><div style="width:1px;height:1px;left:92px;top:33px;"></div><div style="width:1px;height:1px;left:93px;top:18px;"></div><div style="width:1px;height:1px;left:93px;top:32px;"></div><div style="width:1px;height:1px;left:94px;top:19px;"></div><div style="width:1px;height:1px;left:94px;top:31px;"></div><div style="width:1px;height:1px;left:95px;top:20px;"></div><div style="width:1px;height:1px;left:95px;top:30px;"></div><div style="width:1px;height:1px;left:96px;top:21px;"></div><div style="width:1px;height:1px;left:96px;top:29px;"></div><div style="width:1px;height:1px;left:97px;top:22px;"></div><div style="width:1px;height:1px;left:97px;top:28px;"></div><div style="width:1px;height:1px;left:98px;top:23px;"></div><div style="width:1px;height:1px;left:98px;top:27px;"></div><div style="width:1px;height:1px;left:99px;top:24px;"></div><div style="width:1px;height:1px;left:99px;top:26px;"></div><div style="width:1px;height:1px;left:100px;top:25px;"></div><div style="width:1px;height:1px;left:100px;top:25px;"></div><div style="width:1px;height:1px;left:101px;top:26px;"></div><div style="width:1px;height:1px;left:101px;top:24px;"></div><div style="width:1px;height:1px;left:102px;top:27px;"></div><div style="width:1px;height:1px;left:102px;top:23px;"></div><div style="width:1px;height:1px;left:103px;top:28px;"></div><div style="width:1px;height:1px;left:103px;top:22px;"></div><div style="width:1px;height:1px;left:104px;top:29px;"></div><div style="width:1px;height:1px;left:104px;top:21px;"></div><div style="width:1px;height:1px;left:105px;top:30px;"></div><div style="width:1px;height:1px;left:105px;top:20px;"></div><div style="width:1px;height:1px;left:106px;top:31px;"></div><div style="width:1px;height:1px;left:106px;top:19px;"></div><div style="width:1px;height:1px;left:107px;top:32px;"></div><div style="width:1px;height:1px;left:107px;top:18px;"></div><div style="width:1px;height:1px;left:108px;top:33px;"></div><div style="width:1px;height:1px;left:108px;top:17px;"></div><div style="width:1px;height:1px;left:109px;top:34px;"></div><div style="width:1px;height:1px;left:109px;top:16px;"></div><div style="width:1px;height:1px;left:110px;top:35px;"></div><div style="width:1px;height:1px;left:110px;top:15px;"></div><div style="width:1px;height:1px;left:111px;top:36px;"></div><div style="width:1px;height:1px;left:111px;top:14px;"></div><div style="width:1px;height:1px;left:112px;top:37px;"></div><div style="width:1px;height:1px;left:112px;top:13px;"></div><div style="width:1px;height:1px;left:113px;top:38px;"></div><div style="width:1px;height:1px;left:113px;top:12px;"></div><div style="width:1px;height:1px;left:114px;top:39px;"></div><div style="width:1px;height:1px;left:114px;top:11px;"></div><div style="width:1px;height:1px;left:115px;top:40px;"></div><div style="width:1px;height:1px;left:115px;top:10px;"></div><div style="width:1px;height:1px;left:116px;top:41px;"></div><div style="width:1px;height:1px;left:116px;top:9px;"></div><div style="width:1px;height:1px;left:117px;top:42px;"></div><div style="width:1px;height:1px;left:117px;top:8px;"></div><div style="width:1px;height:1px;left:118px;top:43px;"></div><div style="width:1px;height:1px;left:118px;top:7px;"></div><div style="width:1px;height:1px;left:119px;top:44px;"></div><div style="width:1px;height:1px;left:119px;top:6px;"></div><div style="width:1px;height:1px;left:120px;top:45px;"></div><div style="width:1px;height:1px;left:120px;top:5px;"></div><div style="width:1px;height:1px;left:121px;top:46px;"></div><div style="width:1px;height:1px;left:121px;top:4px;"></div><div style="width:1px;height:1px;left:122px;top:47px;"></div><div style="width:1px;height:1px;left:122px;top:3px;"></div><div style="width:1px;height:1px;left:123px;top:48px;"></div><div style="width:1px;height:1px;left:123px;top:2px;"></div><div style="width:1px;height:1px;left:124px;top:49px;"></div><div style="width:1px;height:1px;left:124px;top:1px;"></div><div style="width:1px;height:1px;left:75px;top:175px;"></div><div style="width:1px;height:1px;left:75px;top:225px;"></div><div style="width:1px;height:1px;left:76px;top:176px;"></div><div style="width:1px;height:1px;left:76px;top:224px;"></div><div style="width:1px;height:1px;left:77px;top:177px;"></div><div style="width:1px;height:1px;left:77px;top:223px;"></div><div style="width:1px;height:1px;left:78px;top:178px;"></div><div style="width:1px;height:1px;left:78px;top:222px;"></div><div style="width:1px;height:1px;left:79px;top:179px;"></div><div style="width:1px;height:1px;left:79px;top:221px;"></div><div style="width:1px;height:1px;left:80px;top:180px;"></div><div style="width:1px;height:1px;left:80px;top:220px;"></div><div style="width:1px;height:1px;left:81px;top:181px;"></div><div style="width:1px;height:1px;left:81px;top:219px;"></div><div style="width:1px;height:1px;left:82px;top:182px;"></div><div style="width:1px;height:1px;left:82px;top:218px;"></div><div style="width:1px;height:1px;left:83px;top:183px;"></div><div style="width:1px;height:1px;left:83px;top:217px;"></div><div style="width:1px;height:1px;left:84px;top:184px;"></div><div style="width:1px;height:1px;left:84px;top:216px;"></div><div style="width:1px;height:1px;left:85px;top:185px;"></div><div style="width:1px;height:1px;left:85px;top:215px;"></div><div style="width:1px;height:1px;left:86px;top:186px;"></div><div style="width:1px;height:1px;left:86px;top:214px;"></div><div style="width:1px;height:1px;left:87px;top:187px;"></div><div style="width:1px;height:1px;left:87px;top:213px;"></div><div style="width:1px;height:1px;left:88px;top:188px;"></div><div style="width:1px;height:1px;left:88px;top:212px;"></div><div style="width:1px;height:1px;left:89px;top:189px;"></div><div style="width:1px;height:1px;left:89px;top:211px;"></div><div style="width:1px;height:1px;left:90px;top:190px;"></div><div style="width:1px;height:1px;left:90px;top:210px;"></div><div style="width:1px;height:1px;left:91px;top:191px;"></div><div style="width:1px;height:1px;left:91px;top:209px;"></div><div style="width:1px;height:1px;left:92px;top:192px;"></div><div style="width:1px;height:1px;left:92px;top:208px;"></div><div style="width:1px;height:1px;left:93px;top:193px;"></div><div style="width:1px;height:1px;left:93px;top:207px;"></div><div style="width:1px;height:1px;left:94px;top:194px;"></div><div style="width:1px;height:1px;left:94px;top:206px;"></div><div style="width:1px;height:1px;left:95px;top:195px;"></div><div style="width:1px;height:1px;left:95px;top:205px;"></div><div style="width:1px;height:1px;left:96px;top:196px;"></div><div style="width:1px;height:1px;left:96px;top:204px;"></div><div style="width:1px;height:1px;left:97px;top:197px;"></div><div style="width:1px;height:1px;left:97px;top:203px;"></div><div style="width:1px;height:1px;left:98px;top:198px;"></div><div style="width:1px;height:1px;left:98px;top:202px;"></div><div style="width:1px;height:1px;left:99px;top:199px;"></div><div style="width:1px;height:1px;left:99px;top:201px;"></div><div style="width:1px;height:1px;left:100px;top:200px;"></div><div style="width:1px;height:1px;left:100px;top:200px;"></div><div style="width:1px;height:1px;left:101px;top:201px;"></div><div style="width:1px;height:1px;left:101px;top:199px;"></div><div style="width:1px;height:1px;left:102px;top:202px;"></div><div style="width:1px;height:1px;left:102px;top:198px;"></div><div style="width:1px;height:1px;left:103px;top:203px;"></div><div style="width:1px;height:1px;left:103px;top:197px;"></div><div style="width:1px;height:1px;left:104px;top:204px;"></div><div style="width:1px;height:1px;left:104px;top:196px;"></div><div style="width:1px;height:1px;left:105px;top:205px;"></div><div style="width:1px;height:1px;left:105px;top:195px;"></div><div style="width:1px;height:1px;left:106px;top:206px;"></div><div style="width:1px;height:1px;left:106px;top:194px;"></div><div style="width:1px;height:1px;left:107px;top:207px;"></div><div style="width:1px;height:1px;left:107px;top:193px;"></div><div style="width:1px;height:1px;left:108px;top:208px;"></div><div style="width:1px;height:1px;left:108px;top:192px;"></div><div style="width:1px;height:1px;left:109px;top:209px;"></div><div style="width:1px;height:1px;left:109px;top:191px;"></div><div style="width:1px;height:1px;left:110px;top:210px;"></div><div style="width:1px;height:1px;left:110px;top:190px;"></div><div style="width:1px;height:1px;left:111px;top:211px;"></div><div style="width:1px;height:1px;left:111px;top:189px;"></div><div style="width:1px;height:1px;left:112px;top:212px;"></div><div style="width:1px;height:1px;left:112px;top:188px;"></div><div style="width:1px;height:1px;left:113px;top:213px;"></div><div style="width:1px;height:1px;left:113px;top:187px;"></div><div style="width:1px;height:1px;left:114px;top:214px;"></div><div style="width:1px;height:1px;left:114px;top:186px;"></div><div style="width:1px;height:1px;left:115px;top:215px;"></div><div style="width:1px;height:1px;left:115px;top:185px;"></div><div style="width:1px;height:1px;left:116px;top:216px;"></div><div style="width:1px;height:1px;left:116px;top:184px;"></div><div style="width:1px;height:1px;left:117px;top:217px;"></div><div style="width:1px;height:1px;left:117px;top:183px;"></div><div style="width:1px;height:1px;left:118px;top:218px;"></div><div style="width:1px;height:1px;left:118px;top:182px;"></div><div style="width:1px;height:1px;left:119px;top:219px;"></div><div style="width:1px;height:1px;left:119px;top:181px;"></div><div style="width:1px;height:1px;left:120px;top:220px;"></div><div style="width:1px;height:1px;left:120px;top:180px;"></div><div style="width:1px;height:1px;left:121px;top:221px;"></div><div style="width:1px;height:1px;left:121px;top:179px;"></div><div style="width:1px;height:1px;left:122px;top:222px;"></div><div style="width:1px;height:1px;left:122px;top:178px;"></div><div style="width:1px;height:1px;left:123px;top:223px;"></div><div style="width:1px;height:1px;left:123px;top:177px;"></div><div style="width:1px;height:1px;left:124px;top:224px;"></div><div style="width:1px;height:1px;left:124px;top:176px;"></div><div style="left:2px;top:68px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:2px;top:77px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:43px;top:68px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:43px;top:77px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:52px;top:68px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:52px;top:77px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:93px;top:68px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:93px;top:77px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:102px;top:68px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:102px;top:77px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:143px;top:68px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:143px;top:77px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:152px;top:68px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:152px;top:77px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:193px;top:68px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:193px;top:77px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:18px;top:43px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:18px;top:52px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:27px;top:43px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:27px;top:52px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:168px;top:43px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:168px;top:52px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:177px;top:43px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:177px;top:52px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:2px;top:143px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:2px;top:152px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:43px;top:143px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:43px;top:152px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:52px;top:143px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:52px;top:152px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:93px;top:143px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:93px;top:152px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:102px;top:143px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:102px;top:152px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:143px;top:143px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:143px;top:152px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:152px;top:143px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:152px;top:152px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:193px;top:143px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:193px;top:152px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:18px;top:168px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:18px;top:177px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:27px;top:168px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:27px;top:177px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:168px;top:168px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:168px;top:177px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:0px;background-color:#F5D2B4;"></div></div><div style="left:177px;top:168px;width:6px;height:6px;"><div style="width:5px;height:5px;top:0px;left:1px;background-color:#F5D2B4;"></div></div><div style="left:177px;top:177px;width:6px;height:6px;"><div style="width:5px;height:5px;top:1px;left:1px;background-color:#F5D2B4;"></div></div></div><div style="position:absolute;left:12px;top:4px;width:250px;font-size:12px;letter-spacing:13px;" id="bside">１２３４５６７８９</div><div style="position:absolute;left:18px;top:135px;width:198px;height:22px;overflow:hidden;text-align:center;line-height:24px;" id="mside"></div><div style="position:absolute;left:11px;top:275px;width:250px;font-size:12px;letter-spacing:13px;" id="rside">９８７６５４３２１</div><div style="position:absolute;left:4px;top:21.5px;width:225px;height:252px;"><div id="z32" style="left:250px;top:225px;position:absolute;width:25px;height:25px;"><div style="position:absolute;top:0;left:0;width:24px;height:24px;background-color:#0F0;"></div></div><div id="z31" style="left: 200px; top: 75px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;"></div></div><div id="z30" style="left: 150px; top: 75px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;"></div></div><div id="z29" style="left: 100px; top: 75px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;"></div></div><div id="z28" style="left: 50px; top: 75px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;"></div></div><div id="z27" style="left: 0px; top: 75px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b7_24.png);background-position:0px 0px;"></div></div><div id="z26" style="left: 175px; top: 50px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b6_24.png);background-position:0px 0px;"></div></div><div id="z25" style="left: 25px; top: 50px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b6_24.png);background-position:0px 0px;"></div></div><div id="z24" style="left: 200px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b1_24.png);background-position:0px 0px;"></div></div><div id="z23" style="left: 175px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b2_24.png);background-position:0px 0px;"></div></div><div id="z22" style="left: 150px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b3_24.png);background-position:0px 0px;"></div></div><div id="z21" style="left: 125px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b4_24.png);background-position:0px 0px;"></div></div><div id="z20" style="left: 100px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b5_24.png);background-position:0px 0px;"></div></div><div id="z19" style="left: 75px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b4_24.png);background-position:0px 0px;"></div></div><div id="z18" style="left: 50px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b3_24.png);background-position:0px 0px;"></div></div><div id="z17" style="left: 25px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b2_24.png);background-position:0px 0px;"></div></div><div id="z16" style="left: 0px; top: 0px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/b1_24.png);background-position:0px 0px;"></div></div><div id="z15" style="left: 0px; top: 150px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;"></div></div><div id="z14" style="left: 50px; top: 150px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;"></div></div><div id="z13" style="left: 100px; top: 150px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;"></div></div><div id="z12" style="left: 150px; top: 150px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;"></div></div><div id="z11" style="left: 200px; top: 150px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r7_24.png);background-position:0px 0px;"></div></div><div id="z10" style="left: 25px; top: 175px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r6_24.png);background-position:0px 0px;"></div></div><div id="z9" style="left: 175px; top: 175px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r6_24.png);background-position:0px 0px;"></div></div><div id="z8" style="left: 0px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r1_24.png);background-position:0px 0px;"></div></div><div id="z7" style="left: 25px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r2_24.png);background-position:0px 0px;"></div></div><div id="z6" style="left: 50px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r3_24.png);background-position:0px 0px;"></div></div><div id="z5" style="left: 75px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r4_24.png);background-position:0px 0px;"></div></div><div id="z4" style="left: 100px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r5_24.png);background-position:0px 0px;"></div></div><div id="z3" style="left: 125px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r4_24.png);background-position:0px 0px;"></div></div><div id="z2" style="left: 150px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r3_24.png);background-position:0px 0px;"></div></div><div id="z1" style="left: 175px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r2_24.png);background-position:0px 0px;"></div></div><div id="z0" style="left: 200px; top: 225px; position: absolute; width: 25px; height: 25px;"><div style="position:absolute;top:0px;left:0px;width:24px;height:24px;background-image:url(zhcn/r1_24.png);background-position:0px 0px;"></div></div><table style="position:absolute;top:0;left:0" cellspacing="0" cellpadding="0"><tbody><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;00&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;10&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;20&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;30&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;40&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;50&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;60&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;70&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;80&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;01&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;11&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;21&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;31&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;41&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;51&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;61&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;71&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;81&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;02&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;12&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;22&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;32&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;42&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;52&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;62&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;72&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;82&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;03&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;13&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;23&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;33&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;43&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;53&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;63&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;73&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;83&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;04&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;14&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;24&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;34&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;44&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;54&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;64&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;74&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;84&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;05&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;15&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;25&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;35&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;45&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;55&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;65&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;75&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;85&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;06&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;16&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;26&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;36&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;46&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;56&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;66&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;76&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;86&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;07&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;17&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;27&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;37&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;47&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;57&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;67&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;77&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;87&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;08&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;18&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;28&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;38&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;48&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;58&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;68&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;78&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;88&#39;)"></td></tr><tr><td style="width:25px;height:25px;" onclick="getMove(&#39;09&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;19&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;29&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;39&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;49&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;59&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;69&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;79&#39;)"></td><td style="width:25px;height:25px;" onclick="getMove(&#39;89&#39;)"></td></tr></tbody></table></div><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:0;" onclick="gotonum(&#39;First&#39;)" value="&lt;&lt;"><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:37px;" onmouseup="gotonum(&#39;Prev&#39;)" value="&lt;"><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:74px;" onmouseup="gotonum(&#39;Next&#39;)" value="&gt;"><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:111px;" onclick="gotonum(&#39;Last&#39;)" value="&gt;&gt;"><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:148px;width:47px;border:0;background-color:transparent;color:#00f;" id="shownow" value="0/0"><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:196px;" id="autoplay" onclick="AutoPlay()" value="Auto"><div style="position:absolute;left:196px;top:106px;width:36px;height:214px;display:none;overflow:hidden;background-color:#666;" id="autotime"><div style="position:absolute;left:1px;top:1px;width:34px;height:212px;line-height:16px;background-color:#fff;text-align:center;"><div style="height:3px;font-size:3px;line-height:3px;"></div><a href="javascript:turnBoard();">Turn</a><br><a href="javascript:mirrorBoard();">Mirro</a><br><a href="javascript:Autotimer(8000)">8s</a><br><a href="javascript:Autotimer(5000)">5s</a><br><a href="javascript:Autotimer(3000)">3s</a><br><a href="javascript:Autotimer(2000)">2s</a><br><a href="javascript:Autotimer(1000)">1s</a><br><a href="javascript:Autotimer(500)">0.5s</a><br><a href="javascript:Autotimer(200)">0.2s</a><br><a href="javascript:Autotimer(100)">0.1s</a></div></div></div><div style="position:absolute;top:28px;left:238px;"><div style="position:absolute;left:0px;top:0px;width:108px;height:293px;background-color:#666;"></div><div style="position:absolute;left:1px;top:1px;width:106px;height:291px;background-color:#9DF;"></div><div style="position:absolute;left:1px;top:20px;width:106px;height:258px;background-color:#FFF;"></div><div style="position:absolute;left:6px;top:1px;width:101px;padding-top:1px!important;padding-top:2px;line-height:18px;">Move List[<a href="javascript:HideMove();" id="hidemove">Hide</a>]</div><div style="position:absolute;left:2px;top:21px;width:105px;height:256px;overflow:auto;" id="m_scroll"><div id="m_text" style="height:257px;-moz-user-select:none;" onselectstart="return false;"><div id="move_0" onmouseup="gotonum(0)" style="background-color:#316ac5;color:#fff;">--&gt;Start&nbsp;</div></div></div><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:0;" value="Turn" id="turn_Board" onclick="turnBoard()"><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:37px;" value="Mirro" id="mirror_Board" onclick="mirrorBoard()"><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:74px;width:34px;" value="Save" onclick=""></div><div style="position:absolute;top:28px;left:348px;"><div style="position:absolute;left:0px;top:0px;width:148px;height:293px;background-color:#666;"></div><div style="position:absolute;left:1px;top:1px;width:146px;height:291px;background-color:#9DF;"></div><div style="position:absolute;left:1px;top:20px;width:146px;height:172px;background-color:#FFF;"></div><div style="position:absolute;left:2px;top:21px;width:145px;height:170px;overflow:auto;" id="c_scroll"><textarea id="c_text" style="height:170px;overflow-y:scroll!important;overflow-y:visible;border:0;width:100%;padding-left:2px;background-color:transparent;" onblur="allowLR=true;" onfocus="allowLR=false;" ondblclick="this.select();"></textarea></div><div style="position:absolute;left:6px;top:193px;width:141px;padding-top:1px!important;padding-top:2px;line-height:18px;"><a href="javascript:DelMove()" title="Delete variation">Delete Move</a></div><div style="position:absolute;left:1px;top:212px;width:146px;height:66px;background-color:#FFF;"></div><div style="position:absolute;left:2px;top:213px;width:145px;height:64px;overflow:auto;" id="v_scroll"><div id="v_text" style="height:65px;-moz-user-select:none;" onselectstart="return false;"></div></div><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:0;" value="Mini" onclick=""><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:37px;" value="Im/Ex" id="showsource" onclick="ViewSource()"><input type="button" style="position:absolute;line-height:18px;top:296px;width:36px;height:22px;left:74px;width:74px;color:f00;" value="Search" id="showsearch" onclick=""></div><div id="sourceText" style="position:absolute;display:none;top:28px;left:238px;"><div style="position:absolute;left:0px;top:0px;width:258px;height:293px;background-color:#666;"></div><div style="position:absolute;left:1px;top:1px;width:256px;height:291px;background-color:#9DF;"></div><div style="position:absolute;left:1px;top:20px;width:256px;height:156px;background-color:#FFF;"></div><div style="position:absolute;left:6px;top:1px;width:251px;padding-top:1px!important;padding-top:2px;line-height:18px;">Import Export</div><textarea id="source_Text" style="position:absolute;left:2px;top:21px;width:255px;height:154px;overflow-y:scroll;border:0;background-color:transparent;" onblur="allowLR=true;" onfocus="allowLR=false;" ondblclick="this.select();"></textarea><div style="position:absolute;left:6px;top:177px;width:251px;padding-top:1px!important;padding-top:2px;line-height:18px;"><a href="javascript:setBinit(1)">Accept pos</a> <a href="javascript:setBinit(2)" style="color:#f00">Clear board</a> <a href="javascript:setBinit(3)">Start pos</a></div><div style="position:absolute;left:1px;top:196px;width:256px;height:82px;background-color:#FFF;"></div><div style="position:absolute;left:2px;top:197px;width:255px;height:80px;overflow-y:scroll;"><div style="position:absolute;left:4px;top:1px;"><br>ExportPOS:<a href="javascript:getFENTEXT()">Text FEN</a> <br>Add Pieces:<span id="addred"><a href="javascript:addQizi(&#39;0_8&#39;)" title="Select Red Rook">车</a><a href="javascript:addQizi(&#39;1_7&#39;)" title="Select Red Horse">马</a><a href="javascript:addQizi(&#39;9_10&#39;)" title="Select Red Cannon">炮</a><a href="javascript:addQizi(&#39;11_12_13_14_15&#39;)" title="Select Red Pawn">兵</a><a href="javascript:addQizi(&#39;2_6&#39;)" title="Select Red Elephant">相</a><a href="javascript:addQizi(&#39;3_5&#39;)" title="Select Red Advisor">仕</a><a href="javascript:addQizi(&#39;4&#39;)" title="Select Red King">帅</a></span> <a href="javascript:addQizi(&#39;16_24&#39;)" title="Select Black 车">车</a><a href="javascript:addQizi(&#39;17_23&#39;)" title="Select Black 马">马</a><a href="javascript:addQizi(&#39;25_26&#39;)" title="Select Black 炮">炮</a><a href="javascript:addQizi(&#39;27_28_29_30_31&#39;)" title="Select Black 卒">卒</a><a href="javascript:addQizi(&#39;18_22&#39;)" title="Select Black 象">象</a><a href="javascript:addQizi(&#39;19_21&#39;)" title="Select Black 士">士</a><a href="javascript:addQizi(&#39;20&#39;)" title="Select Black 将">将</a><form id="treetxt" action="http://xqbasic.com/Scripts/chessboard/chessboard.htm" name="treetxt" style="display:none;background-color:#fff;position:absolute;top:0;left:0;">点链接设置变着文本参数--&gt;<a href="javascript:getTEXT(1)" style="color:#00f">确认导出</a> <a href="javascript:TreeSet(0)" style="color:#f00">返回</a><br>导出内容:<span id="nstart2"></span><a href="javascript:TreeSet(&#39;nstart&#39;,0);" id="nstart0" style="color:#00f">◎ 全部</a> <a href="javascript:TreeSet(&#39;nstart&#39;,1);" id="nstart1">◎当前局面</a> <a href="javascript:getTEXT(&#39;&#39;);" id="nstart3">◎简单文本</a><br>导出格式:<span id="stype3"></span><a href="javascript:TreeSet(&#39;stype&#39;,1);" id="stype1" style="color:#00f">◎ 标准</a> <a href="javascript:TreeSet(&#39;stype&#39;,0);" id="stype0">◎分离模式</a> <a href="javascript:TreeSet(&#39;stype&#39;,2);" id="stype2">◎紧凑模式</a><br>每行列数:<span id="col0"></span><a href="javascript:TreeSet(&#39;col&#39;,1);" id="col1" style="color:#00f">◎ 一列</a> <a href="javascript:TreeSet(&#39;col&#39;,2);" id="col2">◎每行二列</a> <a href="javascript:TreeSet(&#39;col&#39;,3);" id="col3">◎每行三列</a><br>点击相应导出格式链接然后点确认导出即可<br>注解行首 <input type="text" name="zhustr" value="0"> 着法行首 <input type="text" name="lspace" value="4"> 着法行尾 <input type="text" name="rspace" value="0"><br>回合内左 <input type="text" name="lpad" value="1"> 回合内右 <input type="text" name="rpad" value="1"> 回合之间 <input type="text" name="mspace" value="3"><br>注解标示 <input type="text" name="zhujie" value="*"> 变着标示 <input type="text" name="bianzhao" value="B"> 变着层数 <input type="text" name="maxdepth" value="999"><br>清除空项 <input type="text" name="delempty" value="1"> 着数记数 <input type="text" name="istwo" value="0"> 按层编号 <input type="text" name="bianhao" value="1"><br><input type="hidden" name="nstart" value="0"><input type="hidden" name="stype" value="1"><input type="hidden" name="col" value="1"></form></div></div></div><div id="searchText" style="position:absolute;display:none;top:28px;left:238px;"><div style="position:absolute;left:0px;top:0px;width:258px;height:293px;background-color:#666;"></div><div style="position:absolute;left:1px;top:1px;width:256px;height:291px;background-color:#9DF;"></div><div style="position:absolute;left:1px;top:20px;width:256px;height:258px;background-color:#FFF;"></div><div style="position:absolute;left:6px;top:1px;width:251px;padding-top:1px!important;padding-top:2px;line-height:18px;">棋谱搜索</div><div style="position:absolute;left:2px;top:21px;width:255px;height:256px;" id="search_Text"><div style="margin:2px;"><a href="javascript:SearchE()">搜索与当前子力相同对局</a>　<a href="javascript:SearchE(2)">红胜</a>　<a href="javascript:SearchE(0)">黑胜</a>　<a href="javascript:SearchE(1)">和棋</a><br><a href="javascript:SearchP(&#39;next&#39;)">搜索与当前局面相同对局</a>　<a href="javascript:SearchP(&#39;next&#39;,2)">红胜</a>　<a href="javascript:SearchP(&#39;next&#39;,0)">黑胜</a>　<a href="javascript:SearchP(&#39;next&#39;,1)">和棋</a><br><a href="javascript:SearchP(&#39;tnew&#39;)">搜索当前局面的变着统计</a>　<a href="javascript:SearchP(&#39;tnew&#39;,2)">红胜</a>　<a href="javascript:SearchP(&#39;tnew&#39;,0)">黑胜</a>　<a href="javascript:SearchP(&#39;tnew&#39;,1)">和棋</a><br><a href="javascript:SearchRB(&#39;red&#39;)">搜索红方棋手的所有对局</a>　<a href="javascript:SearchRB(&#39;red&#39;,2)">胜局</a>　<a href="javascript:SearchRB(&#39;red&#39;,0)">负局</a>　<a href="javascript:SearchRB(&#39;red&#39;,1)">和局</a><br><a href="javascript:SearchRB(&#39;black&#39;)">搜索黑方棋手的所有对局</a>　<a href="javascript:SearchRB(&#39;black&#39;,2)">胜局</a>　<a href="javascript:SearchRB(&#39;black&#39;,0)">负局</a>　<a href="javascript:SearchRB(&#39;black&#39;,1)">和局</a><br><a href="javascript:getFENTEXT(&#39;coffeecc&#39;)">与软件对弈</a>　<a href="javascript:SearchEPOS(&#39;1009&#39;)">查找同型局</a>　<a href="javascript:getFENTEXT(&#39;Paiendgame&#39;)">搜索当前残局解法</a><br><div style="color:#00f;margin-bottom:12px;">以上链接均可点击搜索，部分功能仅会员可用</div>　　棋谱仓库，百万棋谱，是<span style="color:#f00;">极强大的象棋开<br>局库</span>，可辅助慢棋开局，研究棋谱和对手资料<br>系<span style="color:#f00;">电话13898991761 QQ:88081492 旺旺:hldcg</span><br>动态棋盘生成页面 <a href="http://www.dpxq.com/hldcg/dhtmlxq/" target="_blank" style="color:#00f;">http://dhtmlxq.dpxq.com</a><br><a href="http://www.dpxq.com/" style="color:#00f;" target="_blank">中国象棋棋谱仓库 - 东萍象棋网</a> <a href="http://www.dpxq.com/hldcg/share/" style="color:#f00;" target="_blank">象棋谱大全</a></div></div></div><div style="position:absolute;top:353px;left:4px;">  <div id="div16" style="position:relative;text-align:left;height:35px;width:492px;overflow:hidden;"><div style="position:absolute;right:0;top:0;text-align:right;width:234;"><a href="javascript:copysurl()">Copy</a></div><div style="position:absolute;left:0;top:0;overflow:hidden;text-align:left;width:252;"><nobr><a href="javascript:getInfo()">来源网站</a>：<a href="http://www.dpxq.com/hldcg/search/gourl.asp?site=http%3A//www.dpxq.com&amp;url=http%3A//www.dpxq.com" style="color:#000;" target="_blank">http://www.dpxq.com</a></nobr></div><br><nobr>参与讨论：<a href="http://www.dpxq.com/hldcg/search/gourl.asp?site=http%3A//www.dpxq.com&amp;url=http%3A//www.dpxq.com/hldcg/search" style="color:#000;" target="_blank">http://www.dpxq.com/hldcg/search</a></nobr></div>  <textarea id="showText" onblur="allowLR=true;" onfocus="allowLR=false;" ondblclick="this.select();" style="padding:1px;overflow-y:scroll;background-color:#fff;height:0px;width:492px;"></textarea>  <form target="DhtmlXQ_dpxq" style="display:none;" name="DhtmlXQ_search" id="DhtmlXQ_search" method="post" action="http://www.dpxq.com/hldcg/search/index.asp"><textarea name="ubb"></textarea><input type="text" name="s"><input type="text" name="f"></form></div></div><div id="divsave" style="display:none;overflow:auto;"></div>
+    [DhtmlXQ_diyimg]mxq,1,0,1,1,0,38,40,-355,-26[/DhtmlXQ_diyimg]
 
-</body></html>
+
+
+</body>
+
+</html>
